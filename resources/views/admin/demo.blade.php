@@ -42,5 +42,30 @@
 
             print_r($filtered_array);
     @endphp
+    Queries: 
+ a)   Customers::where(function ($query) use (Customers,Salesman){
+        $query->where('customers.city','Salesman.city');
+    })->get();
+    select customer.cust_name, Salesman.name,salesman.city from salesman, customer where salesman.city = customer.city;
+b) select * from orders where purch_amt > (select avg(purch_amt) as average from orders where ord_date = '10/10/2012');
+Orders::where(function($query) use (orders){
+    $query->select(avg(purch_amt))where(ord_date,'2012-10-10');
+})->get();
+c) 
+
+DB::table("employees e, department d")
+->select("e.emp_id", "e.emp_name", "e.salary", "d.dep_name")
+->whereIn("d.dep_location", ['sydney', 'perth'])
+->where("e.dep_id", "=", d.dep_id)
+->whereIn("e.emp_id", function($query){
+	$query->from("employees e")
+	->select("e.emp_id")
+	->whereIn("e.job_name", "('manager',");
+})
+->whereNull("e.commission")
+->orderBy("d.dep_location","asc")
+->get();
+
+
     </div>
 @endsection
