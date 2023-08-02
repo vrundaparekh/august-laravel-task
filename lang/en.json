@@ -1,0 +1,8 @@
+{
+    "movie_name": "Movie Name",
+    "description": "Description.",
+    "youtube_url": "Youtube URL",
+    "image": "Image",
+    "release_date": "Release Date",
+    "slug": "Slug"
+}
